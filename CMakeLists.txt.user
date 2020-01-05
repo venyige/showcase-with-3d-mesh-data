@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.9.1, 2020-01-05T14:39:59. -->
+<!-- Written by QtCreator 4.9.1, 2020-01-05T15:23:27. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -8,7 +8,7 @@
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
-  <value type="int">0</value>
+  <value type="int">1</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.EditorSettings</variable>
@@ -669,15 +669,16 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">triangular_mesh_conversion_utility</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeRunConfiguration.triangular_mesh_conversion_utility
 /home/tve/Documents/shapr3d/tmcu/triangular_mesh_conversion_utility/</value>
-    <value type="QString" key="RunConfiguration.Arguments">-o output.stl -f STL -p &quot;1.1  2 3.3&quot; -T &quot;tran,2;2;2.3,0  rot,1;1;11.5,23.5 scal,1;1;1,3&quot; /home/tve/Documents/shapr3d/cubic_bezier.obj</value>
+    <value type="QString" key="RunConfiguration.Arguments"></value>
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseMultiProcess">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseTerminal">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default"></value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/tve/Documents/shapr3d/tmcu/build-triangular_mesh_conversion_utility-Imported_Kit-Default</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

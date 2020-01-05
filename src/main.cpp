@@ -72,7 +72,12 @@ int main(int argc, char** argv)
         }
     }
     //    cout<<" f: "<<params['f']<<" o: "<<params['o']<<" p: "<<params['p']<<" T: "<<params['T']<<endl;
-    inFile=argv[optind];
+    if(argc>1)
+        inFile=argv[optind];
+    else {
+        help();
+        return 0;
+    }
     if(basereader::chkFile(inFile)){
         //        cout<<"File is OK!"<<endl;
         //#########################################################
