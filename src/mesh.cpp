@@ -4,12 +4,12 @@ mesh::mesh()
 {
     _t.setIdentity();
 }
-mesh::mesh(vector<Vector3d> v, vector<Vector3d> , vector<Vector3d> ,vector<array<int, 3>> f )
+mesh::mesh(vector<Vector3d> v, vector<Vector3d>, vector<Vector3d> vn,vector<array<size_t, 3>> f )
 {
     _t.setIdentity();
     _v=v;
     //   _vt=vt; //future feature
-    //   _vn=vn; //future feature
+    _vn=vn;
     _f=f;
 }
 
@@ -53,10 +53,59 @@ void mesh::performTransforms()
     }
 
 }
+
+
+
+#define triPt(a) this->_v[triI[a]-1]
+#define triPtA triPt(0)
+#define triPtB triPt(1)
+#define triPtC triPt(2)
+bool mesh::checkInclusion(Eigen::Vector3d& poI)
+{
+    double zRef=poI.z();
+    size_t norii=0;
+    double zHit;
+    size_t hitCounter=0;
+    for(auto triI: this->_f){
+        //      Exclude groupA
+        if((triPtA.z()<zRef)&&(triPtB.z()<zRef)&&(triPtB.z()<zRef)){
+            norii++;
+            continue;
+        }
+        if(util::ptInTriangle(poI, triPtA, triPtB, triPtC)){
+            //   Now the plane-halfray eqation system is needed
+            //      a(x−x0)+b(y−y0)+c(z−z0)=0
+            if((triPtA.z()>zRef)&&(triPtB.z()>zRef)&&(triPtB.z()>zRef)){
+                hitCounter++;
+            }else{
+                zHit=triPtA.z()+(this->_vn[norii].x()*(triPtA.x()-poI.x())-this->_vn[norii].y()*(triPtA.y()-poI.y()))/this->_vn[norii].z();
+                if(zHit>=zRef)
+                    hitCounter++;
+            }
+        }
+        norii++;
+    }
+    //Oddity check
+    return hitCounter&1;
+}
+
+void mesh::generateNormals()
+{
+    for(auto triI: this->_f){
+        this->_vn.push_back(((triPtB-triPtA).cross(triPtC-triPtA)).normalized());
+    }
+}
+/*
+#define triPt(a) this->_v[fc[a]-1]
+#define triPtA triPt(0)
+#define triPtB triPt(1)
+#define triPtC triPt(2)
 void mesh::generateNormals()
 {
     unique_ptr<size_t> vP=make_unique<size_t>(size_t(0));
-    std::transform(_f.begin(), _f.end(), _vn.begin(), [=](array<int, 3>& /*fc*/){
- //       this->_v[fc[0]];
-        return Eigen::Vector3d(0,0,0);});
+    std::transform(_f.begin(), _f.end(), _vn.begin(), [&](array<size_t, 3>& fc){
+        std::cout<<triPtA<<endl;
+        return ((triPtB-triPtA).cross(triPtC-triPtA)).normalized();});
+
 }
+*/

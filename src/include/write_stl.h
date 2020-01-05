@@ -13,14 +13,16 @@ public:
     write_stl();
     write_stl(const string& fileStr,
               std::shared_ptr<vector<Eigen::Vector3d>> ptArray,
-              std::shared_ptr<vector<array<int, 3>>> ptFace);
+              std::shared_ptr<vector<Eigen::Vector3d>> ptNorm,
+              std::shared_ptr<vector<array<size_t, 3>>> ptFace);
     ~write_stl();
 
     void dumpFile();
 
 private:
     std::shared_ptr<vector<Eigen::Vector3d>> _ptV;
-    std::shared_ptr<vector<array<int, 3>>> _ptF;
+    std::shared_ptr<vector<Eigen::Vector3d>> _ptN;
+    std::shared_ptr<vector<array<size_t, 3>>> _ptF;
 };
 
 #endif // WRITE_STL_H

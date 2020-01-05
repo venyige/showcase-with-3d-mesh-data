@@ -5,7 +5,7 @@ read_obj::read_obj()
 
 }
 read_obj::read_obj(const string fileStr):basereader(fileStr, std::ios::in){}
-int read_obj::getGeom(vector<Eigen::Vector3d>& vertEV,vector<array<int, 3>>& facV)
+int read_obj::getGeom(vector<Eigen::Vector3d>& vertEV,vector<array<size_t, 3>>& facV)
 {
     int retVal=0;
     string lineFF;
@@ -14,7 +14,7 @@ int read_obj::getGeom(vector<Eigen::Vector3d>& vertEV,vector<array<int, 3>>& fac
     }
     if(this->isReady()){
         std::vector<std::string> lineVec;
-        vector<int> buf;
+        vector<size_t> buf;
         while(getline(this->iFStream(),lineFF)){
             lineVec.clear();
             lineVec=strSplit(lineFF, " ");
@@ -34,11 +34,11 @@ int read_obj::getGeom(vector<Eigen::Vector3d>& vertEV,vector<array<int, 3>>& fac
                         }
                         if(buf.size()>3){
                             for(size_t iii=0; iii<buf.size()-2;iii++){
-                                facV.push_back(array<int,3>{buf[0], buf[iii+1], buf[iii+2]});
+                                facV.push_back(array<size_t,3>{buf[0], buf[iii+1], buf[iii+2]});
                             }
                         }else{
                             //cout<< "BUF 1: "<< buf[0]<< " 2: "<< buf[1]<<" 3: " << buf[2]<<endl;
-                            facV.push_back(array<int,3>{buf[0], buf[1], buf[2]});
+                            facV.push_back(array<size_t,3>{buf[0], buf[1], buf[2]});
                         }
                     }
 

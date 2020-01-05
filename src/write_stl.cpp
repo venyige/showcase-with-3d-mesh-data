@@ -4,9 +4,11 @@ write_stl::write_stl()
 {}
 
 write_stl::write_stl(const string& fileStr, std::shared_ptr<vector<Eigen::Vector3d>> ptArray,
-                     std::shared_ptr<vector<array<int, 3>>> ptFace):baseWriter (fileStr)
+                     std::shared_ptr<vector<Eigen::Vector3d>> ptNorm,
+                     std::shared_ptr<vector<array<size_t, 3>>> ptFace):baseWriter (fileStr)
 {
     _ptV=ptArray;
+    _ptN=ptNorm;
     _ptF=ptFace;
     setPath(fileStr);
 }
@@ -32,9 +34,11 @@ void write_stl::dumpFile()
         this->oFStream().write(head, 80);
         this->oFStream().write(reinterpret_cast<char*>(&numFaces), 4);
         for(size_t iii=0; iii<numFaces; iii++){
-            cTnr=0.0;
+            cTnr=float((*_ptN)[iii][0]);
             this->oFStream().write(reinterpret_cast<char*>(&cTnr), 4);
+            cTnr=float((*_ptN)[iii][1]);
             this->oFStream().write(reinterpret_cast<char*>(&cTnr), 4);
+            cTnr=float((*_ptN)[iii][2]);
             this->oFStream().write(reinterpret_cast<char*>(&cTnr), 4);
             for(size_t jjj=0; jjj<3; jjj++){
                 vii=size_t((*_ptF)[iii][jjj]-1);

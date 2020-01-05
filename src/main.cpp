@@ -45,7 +45,7 @@ int main(int argc, char** argv)
     vector<string> trStringVec;
 
     vector<Eigen::Vector3d> vertEV;
-    vector<array<int, 3>> facV;
+    vector<array<size_t, 3>> facV;
 
     std::map<int, std::string> params;
 
@@ -167,9 +167,24 @@ int main(int argc, char** argv)
 
                 return 0;
             }
+            meshUtil.generateNormals();
+            if(params['p'].empty()){
+                cout<<"POI \"-p\" parameter missing, inclusion check omitted."<<endl;
+            }else{
+                Eigen::Vector3d poI;
+                vector<string> poiVS=basereader::strSplit(params['p'], " ");
+                poI[0]=stod(poiVS[0]);
+                poI[1]=stod(poiVS[1]);
+                poI[2]=stod(poiVS[2]);
+                cout<<"The 3D point given with the \"-p\" parameter is "
+                   << (meshUtil.checkInclusion(poI)?"inside": "outside") << " of the "<<endl;
+                cout<<"3D body after the given transformations (\"-T\") performed."<<endl;
+            }
             write_stl stlWriter(params['o'],
                     make_shared<vector<Eigen::Vector3d>>( meshUtil.v()),
-                    make_shared<vector<array<int, 3>>>(meshUtil.f()));
+                    make_shared<vector<Eigen::Vector3d>>( meshUtil.n()),
+                    make_shared<vector<array<size_t, 3>>>(meshUtil.f()));
+
             stlWriter.dumpFile();
         }else {
             cout<< "The input file does not contain vertex or face data!" <<endl;
@@ -179,7 +194,7 @@ int main(int argc, char** argv)
         cout<<"vertV size:"<<vertEV.size()<<endl;
         for_each(vertEV.begin(), vertEV.end(), [](const Eigen::Vector3d& n) { std::cout << "x:" << n.x()<<" y:"<<n.y()<<" z:"<<n.z()<<endl; });
         cout<<"faceV size:"<<facV.size()<<endl;
-        for_each(facV.begin(), facV.end(), [](const array<int,3>& n) { std::cout << "1:" << n[0]<<" 2:"<<n[1]<<" 3:"<<n[2]<<endl; });*/
+        for_each(facV.begin(), facV.end(), [](const array<size_t,3>& n) { std::cout << "1:" << n[0]<<" 2:"<<n[1]<<" 3:"<<n[2]<<endl; });*/
 
     }else{
         cout<< "INPUT FILE PROBLEM"<<endl;
