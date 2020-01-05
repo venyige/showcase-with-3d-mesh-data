@@ -49,15 +49,15 @@ From the assignment the next one is a very important simplification „You can a
 The arbitrary half-ray will be the +Z direction from the point, for the sake of simplicity.
 
 Implementation:
-1. all triangles GroupA with Az<Pz and Bz<Pz and Cz<Pz to be excluded
-2. all triangles, GroupB with  Az>Pz or Bz>Pz or Cz>Pz to be investigated for 2D inclusion in the plane Pz
-``` REF.:
+1. all triangles ```GroupA``` with ```Az<Pz and Bz<Pz and Cz<Pz``` to be excluded
+2. all triangles, ```GroupB``` with  ```Az>Pz or Bz>Pz or Cz>Pz``` to be investigated for 2D inclusion in the plane ```Pz```.
+``` Reference:
 	2D „pt in triangle” fiddle with multiplication-only solution:
 	http://jsfiddle.net/PerroAZUL/zdaY8/1/ 
 ```
-3. GroupB includes GroupC with  Az>Pz and Bz>Pz and Cz>Pz needs no further checking
-4. GroupD = GroupB-GroupC after inclusion check, calculate P’ (impact point of the half-ray) then checking if 
-	Pz’ > Pz.
+3. GroupB includes ```GroupC``` with  ```Az>Pz and Bz>Pz and Cz>Pz``` needs no further checking
+4. ```GroupD = GroupB-GroupC``` after inclusion check, calculate ```P’``` (impact point of the half-ray) then checking if 
+	```Pz’ > Pz.```
 ### Note: 
 If any transformation is given by the "-T" parameter, the inclusion check is performed twice, once before and once after the transformations.
 	
