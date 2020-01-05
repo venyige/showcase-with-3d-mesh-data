@@ -4,40 +4,40 @@
 *c++17 capable compiler on linux* other platforms not yet tested, *Eigen3* linear argebra library, and *CMake* installed.
 ## Build and use:
 In a linux terminal window:
-
+```
 ---$ git clone https://github.com/venyige/showcase-with-3d-mesh-data.git 
-
 ---$ cd showcase-with-3d-mesh-data
-
 ---$ cmake .
-
 ---$ make
-
 ---$ ./tcmu
-
+```
 To show the welcome screen, but to achieve some result with the program, proper commandline parameters needed, at least with an input file name with full path, and either of -o output file, or -f format specifier, see below.
 
 # Notes
 ## File converter:
 Command line options:
-Using getopt.
 
-Reader:
+Using ```getopt```.
+
+### Reader:
 Regardless of file format the common task is to read:
 1. Vertices
 2. Facet connections
 3. Normal vectors (with options, see to do list)
 4. Optionally edges (future)
+### Note on [OBJ specification](http://paulbourke.net/dataformats/obj/):
 
-OBJ to STL file conversion:
+At caption *"f"* there is nothing about negative (relative) vertex referencing, but an example is shown with it ```"3.Cube with negative reference numbers"```. As it is not a specification, and leaves more questions than answers (what about the ```vn``` and ```vt``` sections) I deliberately omitted. Also the ```fo``` notation is omitted, but for backward compatibility it might be a "todo".
 
-In the assignment “The OBJ file support should be limited to v, vt, vn and f elements”. However this time there is nothing to do with the vt – texture coordinate elements, as STL can not handle this sort of data nor the transformations are affected by them. So skipped.
+### ```OBJ``` to ```STL``` file conversion:
 
-There is no time to implement a customizable reorder, so I get the given order of points from the OBJ file as the base of calculating the normals.
+In the assignment “The OBJ file support should be limited to v, vt, vn and f elements”. However this time there is nothing to do with the ```vt``` – texture coordinate elements, as ```ST```L can not handle this sort of data nor the transformations are affected by them. So skipped.
 
-As for the inclusion problem there is a need for proper normal vectors for the GroupD triangles, I decided to replace the ones came from the OBJ file, moreover I omit to read them at all.
+There is no time to implement a customizable reorder, so I get the given order of points from the ```OBJ``` file as the base of calculating the normals.
 
-For binary STL serialization I assumed 32 bit little endian float type, because checking and testing needs more time than the given. For “real” production-ready software I would not make this assumption.
+As for the inclusion problem there is a need for proper normal vectors for the ```GroupD``` triangles, I decided to replace the ones came from the ```OBJ``` file, moreover I omit to read them at all.
+
+For binary ```STL``` serialization I assumed 32 bit little endian float type, because checking and testing needs more time than the given. For “real” production-ready software I would not make this assumption.
 
 From the assignment the next one is a very important simplification „You can assume that these are always convex planar faces”, I decided to utilize it – in lack of time - because this way:
 - messing with the winding can be omitted.
@@ -52,27 +52,35 @@ From the assignment the next one is a very important simplification „You can a
 The arbitrary half-ray will be the +Z direction from the point, for the sake of simplicity.
 
 Implementation:
-1. all triangles GroupA with Az<Pz and Bz<Pz and Cz<Pz to be excluded
-2. all triangles, GroupB with  Az>Pz or Bz>Pz or Cz>Pz to be investigated for 2D inclusion in the plane Pz
-	REF.:
-	2D „pt in triangle” fiddle with multiplication-only solution:
-	http://jsfiddle.net/PerroAZUL/zdaY8/1/
-3. GroupB includes GroupC with  Az>Pz and Bz>Pz and Cz>Pz needs no further checking
-4. GroupD = GroupB-GroupC after inclusion check, calculate P’ (impact point of the half-ray) then checking if 
-	Pz’ > Pz.
-### Note: 
+1. all triangles ```GroupA``` with ```Az<Pz and Bz<Pz and Cz<Pz``` to be excluded
+2. all triangles, ```GroupB``` with  ```Az>Pz or Bz>Pz or Cz>Pz``` to be investigated for 2D inclusion in the plane ```Pz```.
+
+*Reference:*
+```
+2D „pt in triangle” fiddle with multiplication-only solution:
+```
+[http://jsfiddle.net/PerroAZUL/zdaY8/1/](http://jsfiddle.net/PerroAZUL/zdaY8/1/)
+
+3. ```GroupB``` includes ```GroupC``` with  ```Az>Pz and Bz>Pz and Cz>Pz``` needs no further checking
+4. ```GroupD = GroupB-GroupC``` after inclusion check, calculate ```P’``` (impact point of the half-ray) then checking if
+
+	```Pz’ > Pz.```
+### Note on double inclusion check: 
 If any transformation is given by the "-T" parameter, the inclusion check is performed twice, once before and once after the transformations.
 	
 ### Tests:
+```
 ./tcmu -f stl -p "10.8623 42.1901 10.8037" -T "tran,2.22;14.12;.2,3 rot,14;15.55;1.6,25 scal,1;1;1,3" /home/tve/Documents/shapr3d/tordef_py.obj
-
+```
+```
 ./tcmu -f stl -p "0.795495  -0.795496 -0.298591"  /home/tve/Documents/shapr3d/tordef.obj
-
+```
 ### To do:
 - Smart float4 (IEEE 754) serialization with size and endianness checking.
 - Smart triangulation – in each polygon search for the max number of co-planar triangles, not to assume planarity for the polygons other than triangles.
 - Customized (with ```getopt``` parameter) normal handling of facets. e.g.: a-as given, b-based on given winding order, c-uniform outward, d-uniform inward…
 - Logging to file
+
 
 ### The "help" text of the program:
 ```Triangular Mesh Converter "tcmu" - Shapr3D Homework /GoDraw
@@ -105,4 +113,5 @@ Options/Arguments:
                For "tran" translation the numN scalar value is omitted. Example:
                -T "tran,2.22;14.12;.2,3 rot,14;15.55;1.6,25 scal,1;1;1,3" 
 	       ```
+
 

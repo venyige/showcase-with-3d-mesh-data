@@ -60,6 +60,7 @@ void mesh::performTransforms()
 #define triPtA triPt(0)
 #define triPtB triPt(1)
 #define triPtC triPt(2)
+#define NORMV this->_vn[norii]
 bool mesh::checkInclusion(Eigen::Vector3d& poI)
 {
     double zRef=poI.z();
@@ -78,7 +79,7 @@ bool mesh::checkInclusion(Eigen::Vector3d& poI)
             if((triPtA.z()>zRef)&&(triPtB.z()>zRef)&&(triPtB.z()>zRef)){
                 hitCounter++;
             }else{
-                zHit=triPtA.z()+(this->_vn[norii].x()*(triPtA.x()-poI.x())-this->_vn[norii].y()*(triPtA.y()-poI.y()))/this->_vn[norii].z();
+                zHit=triPtA.z()+(NORMV.x()*(triPtA.x()-poI.x())+NORMV.y()*(triPtA.y()-poI.y()))/NORMV.z();
                 if(zHit>=zRef)
                     hitCounter++;
             }
