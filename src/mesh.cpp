@@ -91,6 +91,7 @@ bool mesh::checkInclusion(Eigen::Vector3d& poI)
 
 void mesh::generateNormals()
 {
+    this->_vn.clear();
     for(auto triI: this->_f){
         this->_vn.push_back(((triPtB-triPtA).cross(triPtC-triPtA)).normalized());
     }

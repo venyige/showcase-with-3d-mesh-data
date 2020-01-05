@@ -159,7 +159,7 @@ int main(int argc, char** argv)
                             break;
                         }
                     }
-                    meshUtil.performTransforms();
+
                 }else{
                     cout<<"There is no transformation assigned through the command-line parameter\"T\""<<endl;
                 }
@@ -181,9 +181,20 @@ int main(int argc, char** argv)
                 poI[0]=stod(poiVS[0]);
                 poI[1]=stod(poiVS[1]);
                 poI[2]=stod(poiVS[2]);
-                cout<<"The 3D point given with the \"-p\" parameter is "
-                   << (meshUtil.checkInclusion(poI)?"inside": "outside") << " of the "<<endl;
-                cout<<"3D body after the given transformations (\"-T\") performed."<<endl;
+                if(!params['T'].empty()){
+                    cout<<"The 3D point given with the \"-p\" parameter is "
+                       << (meshUtil.checkInclusion(poI)?"INSIDE": "OUTSIDE") << " of the "<<endl;
+                    cout<<"3D body BEFORE the given transformations (\"-T\") performed."<<endl;
+                    meshUtil.performTransforms();
+                    meshUtil.generateNormals();
+                    cout<<"The 3D point given with the \"-p\" parameter is "
+                       << (meshUtil.checkInclusion(poI)?"INSIDE": "OUTSIDE") << " of the "<<endl;
+                    cout<<"3D body AFTER the given transformations (\"-T\") performed."<<endl;
+                }else{
+                    cout<<"The 3D point given with the \"-p\" parameter is "
+                       << (meshUtil.checkInclusion(poI)?"INSIDE": "OUTSIDE") << " of the "<<endl;
+                    cout<<"imported 3D body."<<endl;
+                }
             }
             write_stl stlWriter(params['o'],
                     make_shared<vector<Eigen::Vector3d>>( meshUtil.v()),

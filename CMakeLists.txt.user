@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.9.1, 2020-01-05T15:23:27. -->
+<!-- Written by QtCreator 4.9.1, 2020-01-05T16:23:28. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -669,7 +669,7 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">triangular_mesh_conversion_utility</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeRunConfiguration.triangular_mesh_conversion_utility
 /home/tve/Documents/shapr3d/tmcu/triangular_mesh_conversion_utility/</value>
-    <value type="QString" key="RunConfiguration.Arguments"></value>
+    <value type="QString" key="RunConfiguration.Arguments">-f stl -p &quot;0.795495  -0.795496 -0.298591&quot;  -o /home/tve/Documents/shapr3d/tordef333.stl /home/tve/Documents/shapr3d/tordef.obj</value>
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
