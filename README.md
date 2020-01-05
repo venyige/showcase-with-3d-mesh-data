@@ -54,9 +54,13 @@ The arbitrary half-ray will be the +Z direction from the point, for the sake of 
 Implementation:
 1. all triangles ```GroupA``` with ```Az<Pz and Bz<Pz and Cz<Pz``` to be excluded
 2. all triangles, ```GroupB``` with  ```Az>Pz or Bz>Pz or Cz>Pz``` to be investigated for 2D inclusion in the plane ```Pz```.
+
 *Reference:*
-```2D „pt in triangle” fiddle with multiplication-only solution:```
+```
+2D „pt in triangle” fiddle with multiplication-only solution:
+```
 [http://jsfiddle.net/PerroAZUL/zdaY8/1/](http://jsfiddle.net/PerroAZUL/zdaY8/1/)
+
 3. ```GroupB``` includes ```GroupC``` with  ```Az>Pz and Bz>Pz and Cz>Pz``` needs no further checking
 4. ```GroupD = GroupB-GroupC``` after inclusion check, calculate ```P’``` (impact point of the half-ray) then checking if
 
@@ -65,8 +69,9 @@ Implementation:
 If any transformation is given by the "-T" parameter, the inclusion check is performed twice, once before and once after the transformations.
 	
 ### Tests:
-
-```./tcmu -f stl -p "10.8623 42.1901 10.8037" -T "tran,2.22;14.12;.2,3 rot,14;15.55;1.6,25 scal,1;1;1,3" /home/tve/Documents/shapr3d/tordef_py.obj```
+```
+./tcmu -f stl -p "10.8623 42.1901 10.8037" -T "tran,2.22;14.12;.2,3 rot,14;15.55;1.6,25 scal,1;1;1,3" /home/tve/Documents/shapr3d/tordef_py.obj
+```
 ```
 ./tcmu -f stl -p "0.795495  -0.795496 -0.298591"  /home/tve/Documents/shapr3d/tordef.obj
 ```
@@ -108,4 +113,5 @@ Options/Arguments:
                For "tran" translation the numN scalar value is omitted. Example:
                -T "tran,2.22;14.12;.2,3 rot,14;15.55;1.6,25 scal,1;1;1,3" 
 	       ```
+
 
