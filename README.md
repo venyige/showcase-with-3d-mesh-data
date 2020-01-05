@@ -53,8 +53,10 @@ Implementation:
 2. all triangles, ```GroupB``` with  ```Az>Pz or Bz>Pz or Cz>Pz``` to be investigated for 2D inclusion in the plane ```Pz```.
 
 *Reference:*
+
 	*2D „pt in triangle” fiddle with multiplication-only solution:*
 	*http://jsfiddle.net/PerroAZUL/zdaY8/1/*
+	
 3. GroupB includes ```GroupC``` with  ```Az>Pz and Bz>Pz and Cz>Pz``` needs no further checking
 4. ```GroupD = GroupB-GroupC``` after inclusion check, calculate ```P’``` (impact point of the half-ray) then checking if 
 	```Pz’ > Pz.```
