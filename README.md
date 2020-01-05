@@ -4,23 +4,20 @@
 *c++17 capable compiler on linux* other platforms not yet tested, *Eigen3* linear argebra library, and *CMake* installed.
 ## Build and use:
 In a linux terminal window:
-
+```
 ---$ git clone https://github.com/venyige/showcase-with-3d-mesh-data.git 
-
 ---$ cd showcase-with-3d-mesh-data
-
 ---$ cmake .
-
 ---$ make
-
 ---$ ./tcmu
-
+```
 To show the welcome screen, but to achieve some result with the program, proper commandline parameters needed, at least with an input file name with full path, and either of -o output file, or -f format specifier, see below.
 
 # Notes
 ## File converter:
 Command line options:
-Using getopt.
+
+Using ```getopt```.
 
 Reader:
 Regardless of file format the common task is to read:
@@ -54,9 +51,10 @@ The arbitrary half-ray will be the +Z direction from the point, for the sake of 
 Implementation:
 1. all triangles GroupA with Az<Pz and Bz<Pz and Cz<Pz to be excluded
 2. all triangles, GroupB with  Az>Pz or Bz>Pz or Cz>Pz to be investigated for 2D inclusion in the plane Pz
-	REF.:
+``` REF.:
 	2D „pt in triangle” fiddle with multiplication-only solution:
-	http://jsfiddle.net/PerroAZUL/zdaY8/1/
+	http://jsfiddle.net/PerroAZUL/zdaY8/1/ 
+```
 3. GroupB includes GroupC with  Az>Pz and Bz>Pz and Cz>Pz needs no further checking
 4. GroupD = GroupB-GroupC after inclusion check, calculate P’ (impact point of the half-ray) then checking if 
 	Pz’ > Pz.
