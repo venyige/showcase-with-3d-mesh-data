@@ -19,10 +19,11 @@ public:
     void setTransform(Eigen::Affine3d );
     void resetTrans();
     void addTranslation(Eigen::Vector3d );
-    void     addTranslation(double, double, double);
+    void addTranslation(double, double, double);
     void addRotation(double, Vector3d);
     void addScaling(Vector3d);
     void performTransforms();
+    void generateNormals();
 private:
     vector<Eigen::Vector3d> _v;
     vector<Eigen::Vector3d> _vt; /* for later use */

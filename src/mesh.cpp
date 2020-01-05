@@ -53,3 +53,10 @@ void mesh::performTransforms()
     }
 
 }
+void mesh::generateNormals()
+{
+    unique_ptr<size_t> vP=make_unique<size_t>(size_t(0));
+    std::transform(_f.begin(), _f.end(), _vn.begin(), [=](array<int, 3>& /*fc*/){
+ //       this->_v[fc[0]];
+        return Eigen::Vector3d(0,0,0);});
+}
