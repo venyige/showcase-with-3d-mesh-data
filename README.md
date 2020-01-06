@@ -1,5 +1,8 @@
 # 3D-file-conversion-utility
 3D file conversion, unlimited sequence of transformations (scaling, rotation, translation), containment check for arbitrary vectors.
+## Why "tested" branch?
+However this branch does not contain any new functionaly, I decided not to change my main branch out of the prescribed time frame. This banch contains error corrections (inclusion check has flaws in main branch) and cosmetic enhancements e.g. the readibility of inclusion check messages, etc.\
+Here below I gave the correct way to clone the "tested" branch, and appended some to the "To do" list that is the result of re-thinking some issues.
 ## Prerequisites:
 *c++17 capable compiler on linux* other platforms not yet tested, *Eigen3* linear argebra library, and *CMake* installed.
 ## Build and use:
@@ -75,6 +78,8 @@ If any transformation is given by the "-T" parameter, the inclusion check is per
 - Smart triangulation – in each polygon search for the max number of co-planar triangles, not to assume planarity for the polygons other than triangles.
 - Customized (with ```getopt``` parameter) normal handling of facets. e.g.: a-as given, b-based on given winding order, c-uniform outward, d-uniform inward…
 - Logging to file
+- If I continued this development, I would make the inclusion checking not exclusively to +Z, but first check all four directions if any of them has exclusive ```GroupA```, results quick solution for "Not included". Otherwise I would select the directions with the largest ```GrupA``` size in order to reduce the matrix calculations.
+
 
 
 ### The "help" text of the program:
