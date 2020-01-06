@@ -31,7 +31,7 @@ At caption *"f"* there is nothing about negative (relative) vertex referencing, 
 
 ### ```OBJ``` to ```STL``` file conversion:
 
-In the assignment “The OBJ file support should be limited to v, vt, vn and f elements”. However this time there is nothing to do with the ```vt``` – texture coordinate elements, as ```ST```L can not handle this sort of data nor the transformations are affected by them. So skipped.
+In the assignment “The OBJ file support should be limited to v, vt, vn and f elements”. However this time there is nothing to do with the ```vt``` – texture coordinate elements, as ```STL``` can not handle this sort of data nor the transformations are affected by them. So skipped.
 
 There is no time to implement a customizable reorder, so I get the given order of points from the ```OBJ``` file as the base of calculating the normals.
 
@@ -53,18 +53,13 @@ The arbitrary half-ray will be the +Z direction from the point, for the sake of 
 
 Implementation:
 1. all triangles ```GroupA``` with ```Az<Pz and Bz<Pz and Cz<Pz``` to be excluded
-2. all triangles, ```GroupB``` with  ```Az>Pz or Bz>Pz or Cz>Pz``` to be investigated for 2D inclusion in the plane ```Pz```.
-
-*Reference:*
-```
-2D „pt in triangle” fiddle with multiplication-only solution:
-```
-[http://jsfiddle.net/PerroAZUL/zdaY8/1/](http://jsfiddle.net/PerroAZUL/zdaY8/1/)
-
+2. all triangles, ```GroupB``` with  ```Az>Pz or Bz>Pz or Cz>Pz``` to be investigated for 2D inclusion in the plane ```Pz```.\
+*Reference:*\
+    2D „pt in triangle” fiddle with multiplication-only solution:\
+    [http://jsfiddle.net/PerroAZUL/zdaY8/1/](http://jsfiddle.net/PerroAZUL/zdaY8/1/)\
 3. ```GroupB``` includes ```GroupC``` with  ```Az>Pz and Bz>Pz and Cz>Pz``` needs no further checking
-4. ```GroupD = GroupB-GroupC``` after inclusion check, calculate ```P’``` (impact point of the half-ray) then checking if
-
-	```Pz’ > Pz.```
+4. ```GroupD = GroupB-GroupC``` after inclusion check, calculate ```P’``` (impact point of the half-ray) then checking if\
+	```Pz’ > Pz.```\
 ### Note on double inclusion check: 
 If any transformation is given by the "-T" parameter, the inclusion check is performed twice, once before and once after the transformations.
 	
