@@ -63,7 +63,6 @@ void mesh::performTransforms()
 #define NORMV this->_vn[norii]
 bool mesh::checkInclusion(Eigen::Vector3d& poI)
 {
-    cout<<endl<<" Px:"<< poI.x()<<" Py:"<< poI.y()<<" Pz:"<< poI.z()<<endl;
     double zRef=poI.z();
     size_t norii=0;
     double zHit;
@@ -75,16 +74,13 @@ bool mesh::checkInclusion(Eigen::Vector3d& poI)
             continue;
         }
         if(tcmu_util::ptInTriangle(poI, triPtA, triPtB, triPtC)){
-            //   Now the plane-halfray eqation system is needed
-            //      a(x−x0)+b(y−y0)+c(z−z0)=0
             if((triPtA.z()>zRef)&&(triPtB.z()>zRef)&&(triPtC.z()>zRef)){
-                cout<<endl<<"Hi 0:"<< triI[0]-1 <<" 1:"<< triI[1]-1 <<" 2:"<< triI[2]-1 <<endl;
                 hitCounter++;
             }else{
+//   Now the plane-halfray eqation system is needed
+//      a(x−x0)+b(y−y0)+c(z−z0)=0
                 zHit=triPtA.z()+(NORMV.x()*(triPtA.x()-poI.x())+NORMV.y()*(triPtA.y()-poI.y()))/NORMV.z();
                 if(zHit>zRef){
-                    cout<<endl<<"Lo 0:"<< triI[0]-1 <<" 1:"<< triI[1]-1 <<" 2:"<< triI[2]-1 <<endl;
-
                     hitCounter++;
                 }
             }
