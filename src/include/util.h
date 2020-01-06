@@ -3,7 +3,7 @@
 #include<Eigen/Dense>
 
 
-namespace util{
+namespace tcmu_util{
 
 typedef struct trPar{
     std::string cmd;
@@ -14,7 +14,7 @@ typedef struct trPar{
 //REF.:
 //2D „pt in triangle” fiddle with multiplication-only solution
 //http://jsfiddle.net/PerroAZUL/zdaY8/1/
-static int ptInTriangle(Eigen::Vector3d& p, Eigen::Vector3d& p0, Eigen::Vector3d& p1, Eigen::Vector3d& p2) {
+static bool ptInTriangle(Eigen::Vector3d& p, Eigen::Vector3d& p0, Eigen::Vector3d& p1, Eigen::Vector3d& p2) {
     double A = .5 * (-p1.y() * p2.x() + p0.y() * (-p1.x() + p2.x()) + p0.x() * (p1.y() - p2.y()) + p1.x() * p2.y());
     double s;
     double t;

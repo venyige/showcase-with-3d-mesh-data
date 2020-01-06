@@ -129,9 +129,9 @@ int main(int argc, char** argv)
                 /////EO TEMPORARY
                 if(!params['T'].empty()){
                     vector<string> transItems=basereader::strSplit(params['T'], " ");
-                    std::deque<util::trPar> trPars;
+                    std::deque<tcmu_util::trPar> trPars;
                     vector<string> triiS;
-                    util::trPar triiSV;
+                    tcmu_util::trPar triiSV;
                     vector<string> triiSN;
                     // Now, the transformation steps has to be recorded in reverse order -> std::deque
                     //                cout<<params['T']<<endl;
@@ -187,9 +187,9 @@ int main(int argc, char** argv)
                     cout<<"3D body BEFORE the given transformations (\"-T\") performed."<<endl;
                     meshUtil.performTransforms();
                     meshUtil.generateNormals();
-                    cout<<"The 3D point given with the \"-p\" parameter is "
-                       << (meshUtil.checkInclusion(poI)?"INSIDE": "OUTSIDE") << " of the "<<endl;
-                    cout<<"3D body AFTER the given transformations (\"-T\") performed."<<endl;
+                    cout<<endl<<"The point is "
+                       << (meshUtil.checkInclusion(poI)?"INSIDE": "OUTSIDE") << " of the ";
+                    cout<<"body AFTER the transformations."<<endl;
                 }else{
                     cout<<"The 3D point given with the \"-p\" parameter is "
                        << (meshUtil.checkInclusion(poI)?"INSIDE": "OUTSIDE") << " of the "<<endl;

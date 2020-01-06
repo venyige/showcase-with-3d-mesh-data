@@ -4,7 +4,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 #set (CMAKE_AUTOMOC ON)
 #set (CMAKE_AUTOUIC ON)
 #set (CMAKE_AUTORCC ON)
-#set(CMAKE_BUILD_TYPE DEBUG)
+set(CMAKE_BUILD_TYPE DEBUG)
 #find_package(Qt5 COMPONENTS Core)
 
 project(triangular_mesh_conversion_utility)
