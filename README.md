@@ -5,7 +5,7 @@
 ## Build and use:
 In a linux terminal window:
 ```
----$ git clone https://github.com/venyige/showcase-with-3d-mesh-data.git 
+---$ git clone --single-branch -b tested https://github.com/venyige/showcase-with-3d-mesh-data.git
 ---$ cd showcase-with-3d-mesh-data
 ---$ cmake .
 ---$ make
