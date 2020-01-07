@@ -56,7 +56,7 @@ The arbitrary half-ray will be the +Z direction from the point, for the sake of 
 
 Implementation:
 1. all triangles ```GroupA``` with ```Az<Pz and Bz<Pz and Cz<Pz``` to be excluded
-2. all triangles, ```GroupB``` with  ```Az>Pz or Bz>Pz or Cz>Pz``` to be investigated for 2D inclusion in the plane ```Pz```.
+2. all triangles, ```GroupB``` with  ```Az>Pz or Bz>Pz or Cz>Pz``` to be investigated for 2D inclusion in the plane ```Pz```.\
 *Reference:*\
     2D „pt in triangle” fiddle with multiplication-only solution:\
     [http://jsfiddle.net/PerroAZUL/zdaY8/1/](http://jsfiddle.net/PerroAZUL/zdaY8/1/)\
