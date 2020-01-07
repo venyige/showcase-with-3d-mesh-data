@@ -221,5 +221,5 @@ int main(int argc, char** argv)
     //std::unique_ptr<>
     //std::unique_ptr<mesh<>> theMesh=std::make_unique<mesh>(new mesh());
     //getchar();
-    return 0;
+    return 1;
 }
