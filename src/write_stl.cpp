@@ -24,16 +24,19 @@ void write_stl::dumpFile()
     float cTnr=0.0;
     size_t vii;
     string headStr("Created by \"tcmu\" 3D file conversion utility\nGoDraw");
-    //for_each(headStr.begin(), headStr.end(), [])
+//  Prepare 80 byte header section
     std::transform(headStr.begin(), headStr.end(), head,
                    [](unsigned char c){ return static_cast<uint8_t>(c); });
 
     if(!this->isReady())
         this->openFile();
     if(this->isReady()){
+//      Write header
         this->oFStream().write(head, 80);
+//      Write number of faces
         this->oFStream().write(reinterpret_cast<char*>(&numFaces), 4);
         for(size_t iii=0; iii<numFaces; iii++){
+//          Write normal
             cTnr=float((*_ptN)[iii][0]);
             this->oFStream().write(reinterpret_cast<char*>(&cTnr), 4);
             cTnr=float((*_ptN)[iii][1]);
@@ -41,6 +44,7 @@ void write_stl::dumpFile()
             cTnr=float((*_ptN)[iii][2]);
             this->oFStream().write(reinterpret_cast<char*>(&cTnr), 4);
             for(size_t jjj=0; jjj<3; jjj++){
+//              Write vertices
                 vii=size_t((*_ptF)[iii][jjj]-1);
                 cTnr=float((*_ptV)[vii][0]);
                 this->oFStream().write(reinterpret_cast<char*>(&cTnr), 4);
@@ -49,6 +53,7 @@ void write_stl::dumpFile()
                 cTnr=float((*_ptV)[vii][2]);
                 this->oFStream().write(reinterpret_cast<char*>(&cTnr), 4);
             }
+//          Write parameter bytes as 0, 0
             this->oFStream().write(reinterpret_cast<char*>(&zero2), 2);
         }
 

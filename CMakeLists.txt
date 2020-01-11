@@ -29,4 +29,4 @@ set(HEADERS
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 target_include_directories(${PROJECT_NAME} PUBLIC src/include)
 
-set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "tcmu")
+set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "tcmu" CXX_STANDARD 17 CXX_EXTENSIONS OFF)

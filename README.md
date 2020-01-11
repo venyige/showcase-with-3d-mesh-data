@@ -1,10 +1,11 @@
 # 3D-file-conversion-utility
-3D file conversion, unlimited sequence of transformations (scaling, rotation, translation), containment check for arbitrary vectors.
+3D file conversion, unlimited sequence of transformations (scaling, rotation, translation), [inclusion check](#implementation) for 3D point of interest.
 ## Why "tested" branch?
 However this branch does not contain any new functionaly, I decided not to change my main branch out of the prescribed time frame. This banch contains error corrections (inclusion check has flaws in main branch) and cosmetic enhancements e.g. the readibility of inclusion check messages, etc.\
-Here below I gave the correct way to clone the "tested" branch, and appended some to the "To do" list that is the result of re-thinking some issues.
+There are also some new comments added to critical parts, to enhance code readibility.\
+Here below I gave the correct way to clone the "tested" branch, appended some to the "To do" list that is the result of re-thinking some issues, and refine the description at "Implementation" of the inclusion test algorithm.
 ## Prerequisites:
-*c++17 capable compiler on linux* other platforms not yet tested, *Eigen3* linear argebra library, and *CMake* installed.
+*c++17 capable compiler on linux* other platforms not yet tested, getopt (command line processing library), *Eigen3* linear argebra library, and *CMake* installed.
 ## Build and use:
 In a linux terminal window:
 ```
@@ -54,14 +55,15 @@ From the assignment the next one is a very important simplification „You can a
 
 The arbitrary half-ray will be the +Z direction from the point, for the sake of simplicity.
 
-Implementation:
+### Implementation:
 1. all triangles ```GroupA``` with ```Az<Pz and Bz<Pz and Cz<Pz``` to be excluded
 2. all triangles, ```GroupB``` with  ```Az>Pz or Bz>Pz or Cz>Pz``` to be investigated for 2D inclusion in the plane ```Pz```.\
 *Reference:*\
     2D „pt in triangle” fiddle with multiplication-only solution:\
     [http://jsfiddle.net/PerroAZUL/zdaY8/1/](http://jsfiddle.net/PerroAZUL/zdaY8/1/)\
-3. ```GroupB``` includes ```GroupC``` with  ```Az>Pz and Bz>Pz and Cz>Pz``` needs no further checking
-4. ```GroupD = GroupB-GroupC``` after inclusion check, calculate ```P’``` (impact point of the half-ray) then checking if\
+3. ```GroupB``` contains GroupC + GroupD.\
+4. ```GroupC```: ```Az>Pz and Bz>Pz and Cz>Pz``` needs no further checking
+5. ```GroupD = GroupB-GroupC``` after inclusion check, calculate ```P’``` (impact point of the half-ray) then checking if\
 	```Pz’ > Pz.```\
 ### Note on double inclusion check: 
 If any transformation is given by the "-T" parameter, the inclusion check is performed twice, once before and once after the transformations.

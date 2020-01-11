@@ -68,16 +68,18 @@ bool mesh::checkInclusion(Eigen::Vector3d& poI)
     double zHit;
     size_t hitCounter=0;
     for(auto triI: this->_f){
-        //      Exclude groupA
+//      Exclude GroupA
         if((triPtA.z()<zRef)&&(triPtB.z()<zRef)&&(triPtC.z()<zRef)){
             norii++;
             continue;
         }
+//      2D inclusion check on X-Y plane
         if(tcmu_util::ptInTriangle(poI, triPtA, triPtB, triPtC)){
+//      GroupC: all hits
             if((triPtA.z()>zRef)&&(triPtB.z()>zRef)&&(triPtC.z()>zRef)){
                 hitCounter++;
             }else{
-//   Now the plane-halfray eqation system is needed
+//      GroupD: Now the plane-halfray eqation system is needed
 //      a(x−x0)+b(y−y0)+c(z−z0)=0
                 zHit=triPtA.z()+(NORMV.x()*(triPtA.x()-poI.x())+NORMV.y()*(triPtA.y()-poI.y()))/NORMV.z();
                 if(zHit>zRef){

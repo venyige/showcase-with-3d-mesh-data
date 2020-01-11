@@ -5,6 +5,7 @@
 #include<memory>
 #include<Eigen/Geometry>
 #include<vector>
+#include<iterator>
 #include<util.h>
 using namespace std;
 using namespace Eigen;

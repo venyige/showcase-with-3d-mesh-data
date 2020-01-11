@@ -33,11 +33,12 @@ int read_obj::getGeom(vector<Eigen::Vector3d>& vertEV,vector<array<size_t, 3>>& 
 
                         }
                         if(buf.size()>3){
+//                          Fan-wise triangulation
                             for(size_t iii=0; iii<buf.size()-2;iii++){
                                 facV.push_back(array<size_t,3>{buf[0], buf[iii+1], buf[iii+2]});
                             }
                         }else{
-                            //cout<< "BUF 1: "<< buf[0]<< " 2: "<< buf[1]<<" 3: " << buf[2]<<endl;
+//                          If triangle read straight into buffer
                             facV.push_back(array<size_t,3>{buf[0], buf[1], buf[2]});
                         }
                     }
