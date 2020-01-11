@@ -3,7 +3,7 @@
 ## Why "tested" branch?
 However this branch does not contain any new functionaly, I decided not to change my main branch out of the prescribed time frame. This banch contains error corrections (inclusion check has flaws in main branch) and cosmetic enhancements e.g. the readibility of inclusion check messages, etc.\
 There are also some new comments added to critical parts, to enhance code readibility.\
-Here below I gave the correct way to clone the "tested" branch, appended some to the "To do" list that is the result of re-thinking some issues, and refine the description at ["Implementation"](#implementation) of the inclusion test algorithm.
+Here below I gave the correct way to clone the "tested" branch, appended some to the "To do" list that is the result of re-thinking some issues, and refined the description at ["Implementation"](#implementation) of the inclusion test algorithm.
 ## Prerequisites:
 *c++17 capable compiler on linux* other platforms not yet tested, getopt (command line processing library), *Eigen3* linear argebra library, and *CMake* installed.
 ## Build and use:
