@@ -1,7 +1,7 @@
 # 3D-file-conversion-utility
 3D file conversion, unlimited sequence of transformations (scaling, rotation, translation), containment check for arbitrary vectors.
 ## Prerequisites:
-*c++17 capable compiler on linux* other platforms not yet tested, *Eigen3* linear argebra library, and *CMake* installed.
+*c++17 capable compiler on linux* (other platforms not yet tested), *Eigen3* linear argebra library, and *CMake* installed.
 ## Build and use:
 In a linux terminal window:
 ```
